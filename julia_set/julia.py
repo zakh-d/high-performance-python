@@ -1,11 +1,12 @@
 """Julia set generator without optional PIL-based image drawing """
-import time
+from utils.timing import timefn
 
 # area of complex space to investigate
 x1, x2, y1, y2 = -1.8, 1.8, -1.8, 1.8
 c_real, c_imag = -0.62772, -0.42193
 
 
+@timefn
 def calculate_z_serial_purepython(max_iter, zs, cs):
     output = [0] * len(zs)
     for i in range(len(zs)):
@@ -49,11 +50,7 @@ def calc_pure_python(desired_width, max_iterations):
 
     print("Length of x:", len(x))
     print("Total elements:", len(zs))
-    start_time = time.time()
     output = calculate_z_serial_purepython(max_iterations, zs, cs)
-    end_time = time.time()
-    secs = end_time - start_time
-    print(calculate_z_serial_purepython.__name__ + " took", secs, "seconds")
 
     # This sum is expected for a 1000^2 grid with 300 iterations
     # It ensures that our code evolves exactly as we'd intended
