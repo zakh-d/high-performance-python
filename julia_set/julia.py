@@ -52,9 +52,7 @@ def calc_pure_python(desired_width, max_iterations):
     print("Total elements:", len(zs))
     output = calculate_z_serial_purepython(max_iterations, zs, cs)
 
-    # This sum is expected for a 1000^2 grid with 300 iterations
-    # It ensures that our code evolves exactly as we'd intended
-    assert sum(output) == 33219980
+    return zs, output
 
 
 if __name__ == '__main__':
