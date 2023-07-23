@@ -1,19 +1,17 @@
 """Julia set generator without optional PIL-based image drawing """
-from utils.timing import timefn
 
 # area of complex space to investigate
 x1, x2, y1, y2 = -1.8, 1.8, -1.8, 1.8
 c_real, c_imag = -0.62772, -0.42193
 
 
-@timefn
 def calculate_z_serial_purepython(max_iter, zs, cs):
     output = [0] * len(zs)
     for i in range(len(zs)):
         n = 0
         z = zs[i]
         c = cs[i]
-        while abs(z) < 2 and n < max_iter:
+        while n < max_iter and abs(z) < 2:
             z = z * z + c
             n += 1
         output[i] = n
